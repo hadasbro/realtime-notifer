@@ -1,0 +1,155 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+body {
+    background: #D6FFC1;
+    font: 14px/20px "Lato", Arial, sans-serif;
+    padding: 0px 0px 0px 0px;
+    color: white;
+}
+
+#container {
+    margin: 0 auto;
+    /*width: 750px;*/
+        width: 90%;
+    /*background: #444753;*/
+    border-radius: 5px;
+}
+
+#chat {
+    /*width: 750px;*/
+        width: 90%;
+    float: left;
+    background: #F3F3F3;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #434651;
+}
+
+#messages {
+    padding: 0px 30px 0px;
+    border-bottom: 2px solid white;
+    overflow-y: scroll;
+    /* height: 575px; */
+}
+
+.message-data {
+    margin-top: 15px;
+    color: rgb(150,150,150);
+}
+
+.message-data-time {
+    color: #92959E;
+    padding-left: 6px;
+}
+
+.message {
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 6px;
+    width: 90%;
+    position: relative;
+}
+
+/*
+
+.message:after {
+    bottom: 100%;
+    left: 7%;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border: 10px solid transparent;
+    border-bottom-color: #86BB71;
+    margin-left: -10px;
+}
+*/
+
+.my-message {
+    background: #74CF5C;
+}
+
+.other-message {
+    background: #FFB428;
+}
+
+.other-message:after {
+    border-bottom-color: #6C86D2;
+    left: 93%;
+}
+
+.chat-message {
+    padding: 30px;
+}
+
+#messageInput {
+    width: 100%;
+    border: none;
+    padding: 10px 20px;
+    font: 14px/22px "Lato", Arial, sans-serif;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    resize: none;
+    border:solid 1px #97BA78;
+}
+
+button {
+    float: right;
+    color: #68C14A;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    background: #F2F5F8;
+}
+
+button:hover {
+    color: #9CD27B;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.float-right {
+    float: right;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+select.userHashInput {
+    margin: 0px 0px 20px 0px;
+    padding: 5px;
+    border: solid 1px rgb(235,247,217);
+        width: 90%;
+}
+
+.black-col {
+color: rgb(30,30,30);
+}
+div.Info{
+    padding: 0px 20px 0px 20px;
+    /*background: #C8E9BE;*/
+    color: rgb(58, 74, 57);
+    }

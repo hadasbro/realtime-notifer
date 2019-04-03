@@ -1,0 +1,4 @@
+Rethink DB run:
+cd Rethink DB directory
+rethinkdb --bind all --http-port 9090
+
