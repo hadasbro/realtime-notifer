@@ -27,6 +27,9 @@ Inside:
 
 * Rethink DB (https://www.rethinkdb.com/) [ alternatively you can use Kafka (https://kafka.apache.org/)]
 
+## Communication flow
+
+![picture](files/realtime-notifer.png)
 
 ---
 
@@ -40,13 +43,10 @@ Inside:
 4. Now you can send any message or notification **to any user and concrete session/token** 
 5. Also each user can have his own **subscribe channel** or many separate channels based on session/token
 
-*open below image in new tab to see the fullscreen example*
+*Open below image in new tab to see the fullscreen example*
 
 ![picture](files/gif-notif.gif)
 
-## Communication flow
-
-Many clients -> server
 
 ## Apache Kafka example
 
