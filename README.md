@@ -29,6 +29,9 @@ Inside:
 
 ## Communication flow
 
+System has 2 layers. REST layer (Spring REST + MySQL) and the Socket Communication Layer to communicate with client and subscribe changes in RethinkDB.
+
+
 ![picture](files/realtime-notifer.png)
 
 ---
