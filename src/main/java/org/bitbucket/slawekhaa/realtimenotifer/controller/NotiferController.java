@@ -32,11 +32,12 @@ public class NotiferController {
     @RequestMapping(method = RequestMethod.POST)
     public SingleMessage postMessage(@RequestBody SingleMessage singleMessage) {
 
-        singleMessage.setTime(OffsetDateTime.now());
-
-        HashMap run = r.db("controller").table("messages").insert(singleMessage).run(connectionFactory.createConnection());
-
-        return singleMessage;
+        return null;
+//        singleMessage.setTime(OffsetDateTime.now());
+//
+//        HashMap run = r.db("controller").table("messages").insert(singleMessage).run(connectionFactory.createConnection());
+//
+//        return singleMessage;
     }
 
     /**
