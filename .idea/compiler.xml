@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="realtime-notifer" target="8" />
+      <module name="realtime-notifer" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
