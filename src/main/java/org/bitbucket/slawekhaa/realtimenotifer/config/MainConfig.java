@@ -43,7 +43,7 @@ public class MainConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean(name = "dataSourceMySql")
-    @ConfigurationProperties(prefix="mysql.datasource")
+    @ConfigurationProperties(prefix="spring.datasource")
     @Primary
     public DataSource dataSourceMySql(){
         return DataSourceBuilder.create().build();
