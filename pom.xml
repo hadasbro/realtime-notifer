@@ -8,6 +8,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <start-class>org.bitbucket.slawekhaa.realtimenotifer.RealtimeNotiferApplication</start-class>
+        <dockerImagePrefix>slawekhaa</dockerImagePrefix>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -15,118 +16,9 @@
         <version>1.5.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <!--<profiles>-->
-        <!--<profile>-->
-            <!--<id>test-docker</id>-->
-            <!--<activation>-->
-                <!--<property>-->
-                    <!--<name>realtimenotif</name>-->
-                <!--</property>-->
-            <!--</activation>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.springframework.boot</groupId>-->
-                        <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-                        <!--<configuration>-->
-                            <!--<executable>true</executable>-->
-                        <!--</configuration>-->
-                    <!--</plugin>-->
-                    <!--<plugin>-->
-                        <!--<groupId>org.apache.maven.plugins</groupId>-->
-                        <!--<artifactId>maven-surefire-plugin</artifactId>-->
-                        <!--<version>2.19.1</version>-->
-                    <!--</plugin>-->
-                    <!--<plugin>-->
-                        <!--<groupId>io.fabric8</groupId>-->
-                        <!--<artifactId>docker-maven-plugin</artifactId>-->
-                        <!--<version>0.26.0</version>-->
-                        <!--<extensions>true</extensions>-->
-                        <!--<configuration>-->
-                            <!--<verbose>true</verbose>-->
-                            <!--<images>-->
-                                <!--<image>-->
-                                    <!--<name>${project.artifactId}</name>-->
-                                    <!--<build>-->
-                                        <!--<from>java:8-jdk-alpine</from>-->
-                                        <!--<entryPoint>-->
-                                            <!--<exec>-->
-                                                <!--<args>java</args>-->
-                                                <!--<args>-jar</args>-->
-                                                <!--<args>/maven/${project.artifactId}-${project.version}.jar</args>-->
-                                            <!--</exec>-->
-                                        <!--</entryPoint>-->
-                                        <!--<assembly>-->
-                                            <!--<descriptorRef>artifact</descriptorRef>-->
-                                        <!--</assembly>-->
-                                    <!--</build>-->
-                                <!--</image>-->
-                            <!--</images>-->
-                        <!--</configuration>-->
-                        <!--<executions>-->
-                            <!--<execution>-->
-                                <!--<id>start-mysql</id>-->
-                                <!--<phase>pre-integration-test</phase>-->
-                                <!--<goals>-->
-                                    <!--<goal>start</goal>-->
-                                <!--</goals>-->
-                                <!--<configuration>-->
-                                    <!--<showLogs>true</showLogs>-->
-                                    <!--<images>-->
-                                        <!--<image>-->
-                                            <!--<alias>db_mysql</alias>-->
-                                            <!--<name>mysql:8.0.2</name>-->
-                                            <!--<run>-->
-                                                <!--<ports>-->
-                                                    <!--<port>3306:3306</port>-->
-                                                <!--</ports>-->
-                                                <!--<env>-->
-                                                    <!--<MYSQL_DATABASE>realtime_notifer</MYSQL_DATABASE>-->
-                                                    <!--<MYSQL_USER>sla</MYSQL_USER>-->
-                                                    <!--<MYSQL_PASSWORD>sla</MYSQL_PASSWORD>-->
-                                                    <!--<MYSQL_ROOT_PASSWORD>root</MYSQL_ROOT_PASSWORD>-->
-                                                <!--</env>-->
-                                                <!--<volumes>-->
-                                                    <!--<bind>-->
-                                                        <!--<volume>${project.basedir}/scripts:/docker-entrypoint-initdb.d</volume>-->
-                                                    <!--</bind>-->
-                                                <!--</volumes>-->
-                                                <!--<wait>-->
-                                                    <!--<log>/usr/sbin/mysqld: ready for connections. Version: '8.0.2-dmr'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306</log>-->
-                                                    <!--<time>30000</time>-->
-                                                <!--</wait>-->
-                                            <!--</run>-->
-                                        <!--</image>-->
-                                    <!--</images>-->
-                                <!--</configuration>-->
-                            <!--</execution>-->
-                            <!--<execution>-->
-                                <!--<id>stop-mysql</id>-->
-                                <!--<phase>post-integration-test</phase>-->
-                                <!--<goals>-->
-                                    <!--<goal>stop</goal>-->
-                                <!--</goals>-->
-                            <!--</execution>-->
-
-                            <!--<execution>-->
-                                <!--<id>build</id>-->
-                                <!--<phase>post-integration-test</phase>-->
-                                <!--<goals>-->
-                                    <!--<goal>build</goal>-->
-                                <!--</goals>-->
-                            <!--</execution>-->
-                        <!--</executions>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
-    <!--</profiles>-->
 
     <build>
-
-        <!--nowy docker-->
         <finalName>${project.artifactId}</finalName>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -150,77 +42,26 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--&lt;!&ndash;nowy docker&ndash;&gt;-->
-            <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>com.spotify</groupId>-->
-                <!--<artifactId>docker-maven-plugin</artifactId>-->
-                <!--<version>0.3.1</version>-->
-                <!--<configuration>-->
-                    <!--<imageName>${dockerImagePrefix}/${project.artifactId}</imageName>-->
-                    <!--<dockerDirectory>src/main/docker</dockerDirectory>-->
-                    <!--<resources>-->
-                        <!--<resource>-->
-                            <!--&lt;!&ndash;<targetPath>/</targetPath>&ndash;&gt;-->
-                            <!--<directory>${project.build.directory}</directory>-->
-                            <!--<include>${project.build.finalName}.jar</include>-->
-                        <!--</resource>-->
-                    <!--</resources>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-            <!--&lt;!&ndash;nowy docker end&ndash;&gt;-->
-
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.3.8</version>
+                <configuration>
+                    <imageName>${dockerImagePrefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>4.0.3</version>
             </plugin>
-
-            <!--<plugin>-->
-                <!--&lt;!&ndash; Build an executable JAR &ndash;&gt;-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-jar-plugin</artifactId>-->
-                <!--<version>2.4</version>-->
-                <!--<configuration>-->
-                    <!--<archive>-->
-                        <!--<manifest>-->
-                            <!--<mainClass>org.bitbucket.slawekhaa.realtimenotifer.RealtimeNotiferApplication</mainClass>-->
-                        <!--</manifest>-->
-                    <!--</archive>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-
-
-
-            <!--syary plugin-->
-
-            <!--<plugin>-->
-                <!--<groupId>com.spotify</groupId>-->
-                <!--<artifactId>dockerfile-maven-plugin</artifactId>-->
-                <!--<version>1.4.0</version>-->
-                <!--<configuration>-->
-                    <!--&lt;!&ndash; replace `callicoder` with your docker id&ndash;&gt;-->
-                    <!--<repository>slawekhaa/realtime-notifer-demo</repository>-->
-                    <!--<tag>${project.version}</tag>-->
-                    <!--<buildArgs>-->
-                        <!--<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>-->
-                    <!--</buildArgs>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>default</id>-->
-                        <!--<phase>install</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>build</goal>-->
-                            <!--<goal>push</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
-
         </plugins>
     </build>
 
@@ -258,7 +99,6 @@
             <artifactId>jquery</artifactId>
             <version>3.0.0-alpha1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.webjars/sockjs-client -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>sockjs-client</artifactId>
@@ -332,7 +172,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
@@ -348,5 +187,6 @@
             <artifactId>rethinkdb-driver</artifactId>
             <version>2.2-beta-1</version>
         </dependency>
+
     </dependencies>
 </project>

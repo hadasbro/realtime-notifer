@@ -7,7 +7,10 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user_session")
+@Table(
+        name = "user_session",
+        uniqueConstraints= @UniqueConstraint(columnNames={"session_token", "user_id"})
+)
 @SuppressWarnings({"unused","WeakerAccess","WeakAccess"})
 public class UserSession {
 

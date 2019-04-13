@@ -1,0 +1,22 @@
+mysql-docker:
+  container_name: mysql_docker
+  image: mysql:5.7
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=realtime_notifer
+    - MYSQL_USER=sla
+    - MYSQL_PASSWORD=sla
+
+realtime-notifer-docker:
+  container_name: realtime_notifer
+  image: slawekhaa/realtime_notifer
+#  command: mvn clean spring-boot:run
+  links:
+    - mysql-docker:mysql
+  ports:
+    - 8090:8090
+
+networks:
+  realtime_notifer_network:
+    external:
+      name: realtime_notifer_network
