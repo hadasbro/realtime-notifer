@@ -16,11 +16,14 @@ public class RethinkConnector {
     }
 
     public Connection createConnection() {
-        return null;
-//        try {
-//            return RethinkDB.r.connection().hostname(host).connect();   //port(port).
-//        } catch (TimeoutException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            return RethinkDB.r.
+                    connection().
+                    hostname(host)
+                    .port(port)
+                    .connect();
+        } catch (TimeoutException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

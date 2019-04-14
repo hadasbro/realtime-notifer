@@ -20,20 +20,20 @@ public class DbInitializer implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-//        createDb();
-//        rethinkListener.pushChangesToWebSocket();
+        createDb();
+        rethinkListener.pushChangesToWebSocket();
     }
 
     private void createDb() {
-//        Connection connection = connectionFactory.createConnection();
-//        List<String> dbList = r.dbList().run(connection);
-//        if (!dbList.contains("controller")) {
-//            r.dbCreate("controller").run(connection);
-//        }
-//        List<String> tables = r.db("controller").tableList().run(connection);
-//        if (!tables.contains("messages")) {
-//            r.db("controller").tableCreate("messages").run(connection);
-//            r.db("controller").table("messages").indexCreate("time").run(connection);
-//        }
+        Connection connection = connectionFactory.createConnection();
+        List<String> dbList = r.dbList().run(connection);
+        if (!dbList.contains("controller")) {
+            r.dbCreate("controller").run(connection);
+        }
+        List<String> tables = r.db("controller").tableList().run(connection);
+        if (!tables.contains("messages")) {
+            r.db("controller").tableCreate("messages").run(connection);
+            r.db("controller").table("messages").indexCreate("time").run(connection);
+        }
     }
 }

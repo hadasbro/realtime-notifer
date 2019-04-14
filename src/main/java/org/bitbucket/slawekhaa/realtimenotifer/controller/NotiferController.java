@@ -1,11 +1,11 @@
 package org.bitbucket.slawekhaa.realtimenotifer.controller;
 
-import org.bitbucket.slawekhaa.realtimenotifer.domain.SingleMessage;
-import org.bitbucket.slawekhaa.realtimenotifer.db.RethinkConnector;
-import org.bitbucket.slawekhaa.realtimenotifer.domain.UserSession;
-import org.bitbucket.slawekhaa.realtimenotifer.repository.UserSessionRepository;
 import com.rethinkdb.RethinkDB;
 import com.rethinkdb.net.Cursor;
+import org.bitbucket.slawekhaa.realtimenotifer.db.RethinkConnector;
+import org.bitbucket.slawekhaa.realtimenotifer.domain.SingleMessage;
+import org.bitbucket.slawekhaa.realtimenotifer.domain.UserSession;
+import org.bitbucket.slawekhaa.realtimenotifer.repository.UserSessionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +32,15 @@ public class NotiferController {
     @RequestMapping(method = RequestMethod.POST)
     public SingleMessage postMessage(@RequestBody SingleMessage singleMessage) {
 
-        return null;
-//        singleMessage.setTime(OffsetDateTime.now());
-//
-//        HashMap run = r.db("controller").table("messages").insert(singleMessage).run(connectionFactory.createConnection());
-//
-//        return singleMessage;
+        singleMessage.setTime(OffsetDateTime.now());
+
+        HashMap run = r
+                .db("controller")
+                .table("messages")
+                .insert(singleMessage)
+                .run(connectionFactory.createConnection());
+
+        return singleMessage;
     }
 
     /**
@@ -59,12 +62,17 @@ public class NotiferController {
                 .optArg("index", r.desc("time"))
                 .filter(
 
-                        row -> row.g("toUserId").eq(usess.getUser_id())
-                                .and(row.g("toUsessToken").eq(usess.getSession_token()))
+                        row -> row
+                                .g("toUserId")
+                                .eq(usess.getUser_id())
+                                .and(row.g("toUsessToken")
+                                .eq(usess.getSession_token()))
                 )
                 .limit(500)
                 .run(connectionFactory.createConnection(), SingleMessage.class);
 
+        System.out.println("cursorcursorcursor");
+        System.out.println(cursor);
         return cursor.toList();
     }
 
@@ -80,8 +88,10 @@ public class NotiferController {
     @RequestMapping(value="/get-messages-all", method = RequestMethod.GET)
     public List<SingleMessage> getMessagesAll() {
 
-        return r.db("controller").table("messages")
-                .orderBy().optArg("index", r.desc("time"))
+        return r.db("controller")
+                .table("messages")
+                .orderBy()
+                .optArg("index", r.desc("time"))
                 .limit(500)
                 .orderBy("time")
                 .run(connectionFactory.createConnection(), SingleMessage.class);

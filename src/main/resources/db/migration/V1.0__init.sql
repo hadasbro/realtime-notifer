@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `realtime_notifer`.`test` (
 COLLATE='latin1_swedish_ci'
 ;
 
-CREATE TABLE `user_session` (
+CREATE TABLE IF NOT EXISTS `user_session` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`session_token` VARCHAR(255) NOT NULL,
 	`user_id` INT(11) NOT NULL,

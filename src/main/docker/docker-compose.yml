@@ -7,16 +7,19 @@ mysql-docker:
     - MYSQL_USER=sla
     - MYSQL_PASSWORD=sla
 
+boot-rethink:
+  container_name: rethinkdb_docker
+  image: rethinkdb
+  ports:
+  - 8080:8080
+  - 28015:28015
+  - 29015:29015
+
 realtime-notifer-docker:
   container_name: realtime_notifer
   image: slawekhaa/realtime_notifer
-#  command: mvn clean spring-boot:run
   links:
     - mysql-docker:mysql
+    - boot-rethink:rethink
   ports:
     - 8090:8090
-
-networks:
-  realtime_notifer_network:
-    external:
-      name: realtime_notifer_network
