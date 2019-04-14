@@ -72,7 +72,10 @@ System has 2 layers. REST layer (Spring REST + MySQL) and the Socket Communicati
         
         : restart docker machine
         docker-machine restart default
-
+        
+        : get the IP address of machines
+        docker-machine ip
+        
 *Test example:*
 
 ![picture](files/gif-notif.gif)
