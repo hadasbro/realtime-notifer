@@ -36,25 +36,63 @@ System has 2 layers. REST layer (Spring REST + MySQL) and the Socket Communicati
 
 ---
 
-## Testing
+## Testing on Docker
 
-1. Update application.properties and set up your MySQL and RethinkDB credentials.
-2. Check out client and sender HTML/JS example
-    - http://localhost:8090/client
-    - http://localhost:8090/sender
-3. Open a few clients, log in as some of them and to conrete session and then open a sender window and try to publish notification to any of your clients/sessions
-4. Now you can send any message or notification **to any user and concrete session/token** 
-5. Also each user can have his own **subscribe channel** or many separate channels based on session/token
+1. Build app image    
 
-*Open below image in new tab to see the fullscreen example*
+        realtime_notifer> mvn clean package docker:build -DskipTests
+
+2. Go to /docker directory
+
+        realtime_notifer> cd ./src/main/docker
+
+3. Docker compose
+
+        realtime_notifer/src/main/docker> docker-compose up
+
+4. Check out client and sender HTML/JS example
+    - http://HOST/client
+    - http://HOST/sender
+    
+    HOST = *localhost:8090* or just container's host e.g. *http://192.168.99.100:8090*
+    
+5. Useful docker commands
+
+        : go to cantainer and run bach
+        docker exec -it realtime_notifer /bin/bash
+        
+        : stop all containers
+        docker stop $(docker ps -a -q)
+        
+        : delete all containers
+        docker rm $(docker ps -a -q)
+        
+        : delete all images 
+        docker rmi $(docker images -q)
+        
+        : restart docker machine
+        docker-machine restart default
+
+*Test example:*
 
 ![picture](files/gif-notif.gif)
 
+## Run without Docker
+1. Update application.properties and set up your MySQL and RethinkDB credentials.
+2. If you need some example data you can run Flyway Migration
+    
+        mvn flyway:migrate -Dflyway.configFile=src/main/resources/application.properties
+    
+3. Open a few clients and sender
+4. Try to send any notification to any client
 
-## Apache Kafka example
 
-See https://www.baeldung.com/spring-kafka
+## See more
 
-## Web Sockets
+Apache Kafka example: https://www.baeldung.com/spring-kafka
 
-See https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#websocket
+Web sockets:  https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#websocket
+
+Flyway migrations: https://flywaydb.org/
+
+Docker: https://www.docker.com/
