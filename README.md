@@ -42,7 +42,7 @@ System has 2 layers. REST layer (Spring REST + MySQL) and the Socket Communicati
 
 1. Build app image    
 
-        realtime_notifer> mvn clean package docker:build -DskipTests
+        realtime_notifer> mvn clean package docker:build
 
 2. Go to /docker directory
 
