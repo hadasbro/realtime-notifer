@@ -1,6 +1,14 @@
 ** Realtime notifications, realtime publisher **
 
-
+![picture](https://img.shields.io/badge/Spring%20Boot-2.1.1-brightgreen.svg)
+![picture](https://img.shields.io/badge/Hibernate-5.3.7-blue.svg)
+![picture](https://img.shields.io/badge/SockJS-1.0.0-%234B317D.svg)
+![picture](https://img.shields.io/badge/Stomp-2.3.3-%2330637E.svg)
+![picture](https://img.shields.io/badge/Jackson-2.9.8-green.svg)
+![picture](https://img.shields.io/badge/Thymeleaf-2.1.5-%23877756.svg)
+![picture](https://img.shields.io/badge/-MySQL-blue.svg)
+![picture](https://img.shields.io/badge/-Rethink%20DB-blue.svg)
+![picture](https://img.shields.io/badge/Flyway-5.2.4-green.svg)
 ---
 
 ## Overview
