@@ -1,4 +1,4 @@
-** Realtime notifications, realtime publisher **
+**Realtime notifications, realtime publisher**
 
 ![picture](https://img.shields.io/badge/Java-11.0.1-brightgreen.svg)
 ![picture](https://img.shields.io/badge/Spring%20Boot-2.1.1-brightgreen.svg)
