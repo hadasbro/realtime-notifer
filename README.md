@@ -111,3 +111,7 @@ Web sockets:  https://docs.spring.io/spring/docs/current/spring-framework-refere
 Flyway migrations: https://flywaydb.org/
 
 Docker: https://www.docker.com/
+
+## Authors
+
+* **Slawomir Hadas** - *author* - [Github](https://github.com/hadasbro)
